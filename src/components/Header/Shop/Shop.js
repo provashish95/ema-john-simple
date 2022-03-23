@@ -33,14 +33,14 @@ const Shop = () => {
     }, [products])
 
     const handleAddToCart = (selectedProduct) => {
-        //console.log(selectedProduct);
+        console.log(selectedProduct);
         let newCart = [];
-        const exited = selectedProduct.find(product => product.id === selectedProduct.id);
+        const exited = cart.find(product => product.id === selectedProduct.id);
         if (!exited) {
             selectedProduct.quantity = 1;
             newCart = [...cart, selectedProduct];
         } else {
-            const rest = cart.filter(product => product.id === selectedProduct.id);
+            const rest = cart.filter(product => product.id !== selectedProduct.id);
             exited.quantity = exited.quantity + 1;
             newCart = [...rest, exited];
         }
