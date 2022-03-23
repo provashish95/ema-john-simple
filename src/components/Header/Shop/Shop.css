@@ -8,6 +8,9 @@
     gap: 45px;
     margin: 100px 50px;
 }
+.cart-container{
+    background-color: rgb(255, 224, 179);
+}
 
 /* Media query for medium device which max width is (576px to 720px) */
 @media screen and (max-width: 720px) {
