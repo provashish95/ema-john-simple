@@ -1,14 +1,26 @@
 import React from 'react';
+import './ReviewItem.css';
 
 const ReviewItem = (props) => {
-    console.log(props);
-    const { name, price, quantity, shipping } = props.product;
+    //console.log(props);
+    const { name, price, quantity, shipping, img } = props.product;
     return (
-        <div>
-            <h3>this is review item: {name}</h3>
-            <p>Price :$ {price}</p>
-            <p>Quantity :$ {quantity}</p>
-            <p>Shipping Charge :$ {shipping}</p>
+        <div className="review-item">
+            <div>
+                <img src={img} alt="img" />
+            </div>
+            <div className="review-item-details-container">
+                <div className="review-item-details">
+                    <p className="product-name" title={name}>{name.length > 20 ? name.slice(0, 20) + "..." : name}</p>
+                    <p>Price:<span className="orange=color">{price}</span></p>
+                    <p>Shipping: <small>{shipping}</small></p>
+                    <p>Quantity: <small>{quantity}</small></p>
+                </div>
+                <div className="delete-container">
+                    <button>Delete</button>
+                </div>
+            </div>
+
         </div>
     );
 };
