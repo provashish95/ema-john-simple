@@ -7,7 +7,7 @@ const Login = () => {
     return (
         <div className='form-container'>
             <div>
-                <h2 className='form-title'>This is login</h2>
+                <h2 className='form-title'> Login</h2>
                 <form >
                     <div className="input-group">
                         <label htmlFor="email">Email</label>
@@ -27,7 +27,6 @@ const Login = () => {
                     <div className='form-line-center'>or</div>
                     <div className='form-line-right'></div>
                 </div>
-
                 <button className='login-button'>
                     <img src={googleIcon} alt="googleIcon" />
                     <span>Continue with google</span>
