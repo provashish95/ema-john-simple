@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Login.css';
+import googleIcon from '../../assets/images/google-icon.png';
 
 const Login = () => {
     return (
@@ -26,6 +27,11 @@ const Login = () => {
                     <div className='form-line-center'>or</div>
                     <div className='form-line-right'></div>
                 </div>
+
+                <button className='login-button'>
+                    <img src={googleIcon} alt="googleIcon" />
+                    <span>Continue with google</span>
+                </button>
             </div>
         </div>
     );

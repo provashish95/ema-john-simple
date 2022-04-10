@@ -8,10 +8,6 @@
     justify-content: center;
 }
 
-.form-container p {
-    text-align: center;
-}
-
 .form-title {
     font-size: 35px;
     font-weight: 400;
@@ -43,6 +39,7 @@
     border-radius: 5px;
     border: none;
     font-size: 20px;
+    cursor: pointer;
 }
 
 .form-link {
@@ -78,4 +75,37 @@
     height: 0px;
     border: 1px solid rgba(149, 160, 167, 1);
     border: 1px solid #95A0A7;
+}
+
+.form-container p {
+    text-align: center;
+}
+
+.form-container button {
+    width: 415px;
+    height: 55px;
+    background-color: white;
+    margin: 30px 0px;
+    border: 1px solid rgba(149, 160, 167, 1);
+    border-radius: 5px;
+}
+
+.login-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.login-button span {
+    font-size: 17px;
+    font-weight: 400;
+    color: #2A414F;
+    margin-left: 8px;
+}
+
+.login-button img {
+    width: 32px;
+    height: 32px;
+    margin-left: 8px;
 }
