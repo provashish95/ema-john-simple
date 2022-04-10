@@ -12,7 +12,7 @@ const SignUp = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const [createUserWithEmailAndPassword, user, hookError] = useCreateUserWithEmailAndPassword(auth);
+    const [createUserWithEmailAndPassword, user] = useCreateUserWithEmailAndPassword(auth);
 
 
     const handleEmailBlur = event => {
@@ -44,7 +44,6 @@ const SignUp = () => {
                 const user = result.user;
                 console.log(user);
             })
-
     }
 
     return (
@@ -64,8 +63,8 @@ const SignUp = () => {
                         <label htmlFor="confirmPassword">Confirm Password</label>
                         <input onBlur={handleConfirmPasswordBlur} type="password" name="confirmPassword" id="" required />
                     </div>
-                    <p style={{ color: 'red' }}>{error}</p>
-                    <p style={{ color: 'red' }}>{hookError.message}</p>
+                    {/* <p style={{ color: 'red' }}>{error}</p>
+                    <p style={{ color: 'red' }}>{hookError.message}</p> */}
                     <input className='form-submit' type="submit" value="Sign Up" />
                 </form>
                 <p>
