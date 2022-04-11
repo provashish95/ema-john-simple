@@ -49,7 +49,7 @@ const Login = () => {
                     </div>
                     <p style={{ color: 'red' }}>{error?.message}</p>
                     {
-                        loading && <p style={{ color: 'green' }}>Loading......</p>
+                        loading && <p style={{ color: 'orange' }}>Loading......</p>
                     }
                     <input className='form-submit' type="submit" value="Login" />
                 </form>
