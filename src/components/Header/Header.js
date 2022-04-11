@@ -22,7 +22,7 @@ const Header = () => {
                 <Link to="/about">About</Link>
                 {
                     user ?
-                        <button onClick={handleSignOut}>Sign Out</button>
+                        <span onClick={handleSignOut} className="btn-style">Sign Out</span>
                         :
                         <Link to="/login">Login</Link>}
             </div>
