@@ -7,24 +7,45 @@ import auth from '../../firebase.init';
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 const SignUp = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [error, setError] = useState('');
+    const [email, setEmail] = useState({ value: '', error: '' });
+    const [password, setPassword] = useState({ value: '', error: '' });
+    const [confirmPassword, setConfirmPassword] = useState({ value: '', error: '' });
+    // const [error, setError] = useState('');
     const navigate = useNavigate();
 
     const [createUserWithEmailAndPassword, user] = useCreateUserWithEmailAndPassword(auth);
     const googleProvider = new GoogleAuthProvider();
 
+    console.log(confirmPassword);
+    console.log(password);
+
+
+
     const handleEmailBlur = event => {
-        setEmail(event.target.value);
+        const inputEmail = event.target.value;
+        if (/\S+@\S+\.\S+/.test(inputEmail)) {
+            setEmail({ value: event.target.value, error: '' });
+        } else {
+            setEmail({ value: '', error: 'Your email is not valid' });
+        }
     }
+
     const handlePasswordBlur = event => {
-        setPassword(event.target.value);
+        const inputPassword = event.target.value;
+        const check = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+
+        if (inputPassword.match(check)) {
+            setPassword({ value: inputPassword, error: '' });
+        } else {
+            setPassword({ value: '', error: 'between 8-15 letters [lower+upper letter+ number + special letter]' });
+        }
+
     }
     const handleConfirmPasswordBlur = event => {
-        setConfirmPassword(event.target.value);
+
+        setConfirmPassword({ value: event.target.value, error: '' });
     }
+
 
     if (user) {
         navigate('/shop');
@@ -32,15 +53,11 @@ const SignUp = () => {
 
     const handleCreateUser = (event) => {
         event.preventDefault();
-        if (password !== confirmPassword) {
-            setError("Your Two Passwords did not match!")
+        if (password.value !== confirmPassword.value) {
+            setConfirmPassword({ value: '', error: 'Password did not match' });
             return;
         }
-        if (password.length > 6) {
-            setError("Password must be 6 character!");
-            return;
-        }
-        createUserWithEmailAndPassword(email, password)
+        createUserWithEmailAndPassword(email.value, password.value)
     }
 
     // google sign in ........
@@ -65,17 +82,29 @@ const SignUp = () => {
                     <div className="input-group">
                         <label htmlFor="email">Email</label>
                         <input onBlur={handleEmailBlur} type="email" name="email" id="" required />
+                        <br />
+                        <span style={{ color: 'red' }}>{
+                            email?.error && email.error
+                        }</span>
                     </div>
                     <div className="input-group">
                         <label htmlFor="password">Password</label>
                         <input onBlur={handlePasswordBlur} type="password" name="pass" id="" required />
+                        <br />
+                        <span style={{ color: 'red' }}>{
+                            password?.error && password.error
+                        }</span>
                     </div>
                     <div className="input-group">
                         <label htmlFor="confirmPassword">Confirm Password</label>
                         <input onBlur={handleConfirmPasswordBlur} type="password" name="confirmPassword" id="" required />
+                        <br />
+                        <span style={{ color: 'red' }}>{
+                            confirmPassword?.error && confirmPassword.error
+                        }</span>
                     </div>
-                    {/* <p style={{ color: 'red' }}>{error}</p>
-                    <p style={{ color: 'red' }}>{hookError.message}</p> */}
+
+
                     <input className='form-submit' type="submit" value="Sign Up" />
                 </form>
                 <p>
