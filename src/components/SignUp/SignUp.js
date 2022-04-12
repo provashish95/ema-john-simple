@@ -16,34 +16,45 @@ const SignUp = () => {
     const [createUserWithEmailAndPassword, user] = useCreateUserWithEmailAndPassword(auth);
     const googleProvider = new GoogleAuthProvider();
 
-    console.log(confirmPassword);
-    console.log(password);
-
 
 
     const handleEmailBlur = event => {
         const inputEmail = event.target.value;
-        if (/\S+@\S+\.\S+/.test(inputEmail)) {
-            setEmail({ value: event.target.value, error: '' });
+        if (inputEmail) {
+            if (/\S+@\S+\.\S+/.test(inputEmail)) {
+                setEmail({ value: event.target.value, error: '' });
+            } else {
+                setEmail({ value: '', error: 'Your email is not valid' });
+            }
         } else {
-            setEmail({ value: '', error: 'Your email is not valid' });
+            setEmail({ value: '', error: 'Please fill up these field' });
         }
     }
 
     const handlePasswordBlur = event => {
         const inputPassword = event.target.value;
         const check = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
-
-        if (inputPassword.match(check)) {
-            setPassword({ value: inputPassword, error: '' });
+        if (inputPassword) {
+            if (inputPassword.match(check)) {
+                setPassword({ value: inputPassword, error: '' });
+            } else {
+                setPassword({ value: '', error: 'between 8-15 letters [lower+upper letter+ number + special letter]' });
+            }
         } else {
-            setPassword({ value: '', error: 'between 8-15 letters [lower+upper letter+ number + special letter]' });
+            setPassword({ value: '', error: 'Please fill up these field' });
         }
-
     }
     const handleConfirmPasswordBlur = event => {
-
-        setConfirmPassword({ value: event.target.value, error: '' });
+        const inputConfrimPassword = event.target.value;
+        if (inputConfrimPassword) {
+            if (inputConfrimPassword === password.value) {
+                setConfirmPassword({ value: inputConfrimPassword, error: '' });
+            } else {
+                setConfirmPassword({ value: '', error: 'Password did not match' });
+            }
+        } else {
+            setConfirmPassword({ value: '', error: 'Please fill up these field' });
+        }
     }
 
 
@@ -53,11 +64,12 @@ const SignUp = () => {
 
     const handleCreateUser = (event) => {
         event.preventDefault();
-        if (password.value !== confirmPassword.value) {
-            setConfirmPassword({ value: '', error: 'Password did not match' });
-            return;
+        if (email.value && password.value && confirmPassword.value) {
+            if (password.value === confirmPassword.value) {
+                createUserWithEmailAndPassword(email.value, password.value)
+                return;
+            }
         }
-        createUserWithEmailAndPassword(email.value, password.value)
     }
 
     // google sign in ........
