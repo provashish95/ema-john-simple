@@ -49,11 +49,11 @@ const SignUp = () => {
         signInWithPopup(auth, googleProvider)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                navigate('/shop');
             })
             .catch(error => {
-                const errorMessage = error.message;
-                console.log(errorMessage);
+                //const errorMessage = error.message;
+                navigate('/signup');
             })
     }
 
