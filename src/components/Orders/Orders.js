@@ -13,8 +13,8 @@ const Orders = () => {
     const navigate = useNavigate();
 
     const handleRemoveProduct = product => {
-        const rest = cart.filter(pd => pd.id !== product.id);
-        removeFromDb(product.id);
+        const rest = cart.filter(pd => pd._id !== product._id);
+        removeFromDb(product._id);
         setCart(rest);
     }
 
@@ -22,7 +22,7 @@ const Orders = () => {
         <div className="shop-container">
             <div className="review-item-container">
                 {
-                    cart.map(product => <ReviewItem key={product.id} product={product} handleRemoveProduct={handleRemoveProduct}></ReviewItem>)
+                    cart.map(product => <ReviewItem key={product._id} product={product} handleRemoveProduct={handleRemoveProduct}></ReviewItem>)
                 }
             </div>
             <div className="cart-container">

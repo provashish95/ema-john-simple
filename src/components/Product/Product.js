@@ -6,6 +6,7 @@ import './Product.css';
 const Product = (props) => {
 
     const { selectedProduct, handleAddToCart } = props;
+    //console.log(selectedProduct);
     const { name, img, price, seller, ratings } = selectedProduct;
 
 
