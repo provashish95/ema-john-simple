@@ -4,7 +4,7 @@ import React from 'react';
 import './Product.css';
 
 const Product = (props) => {
-    //console.log(props.selectedProduct);
+
     const { selectedProduct, handleAddToCart } = props;
     const { name, img, price, seller, ratings } = selectedProduct;
 
